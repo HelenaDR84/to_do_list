@@ -1,0 +1,12 @@
+{
+    "name": "helen/to_do_list",
+    "description": "to do list project with php (CRUD)",
+    "type": "project",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Helena de Rosa"
+        }
+    ],
+    "require": {}
+}
