@@ -8,5 +8,11 @@
             "name": "Helena de Rosa"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Database\\": "database/",
+            "App\\": "app/"
+        }
+    },
     "require": {}
 }

@@ -1,42 +1,98 @@
-.heading{
-    width: 50%;
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.heading {
+    width: 100%;
     margin: 30px auto;
     text-align: center;
-    color:  #e3e8d9;
+    color: #e3e8d9;
     background: #7952bb;
     border: 2px solid #58215e;
     border-radius: 20px;
-}
-form {
-    width: 50%; 
-    margin: 30px auto; 
-    border-radius: 5px; 
     padding: 10px;
+}
+
+.input_form {
+    width: 100%;
+    margin: 30px auto;
+    border-radius: 5px;
+    padding: 20px;
     background: #7952bb;
     border: 1px solid #58215e;
 }
-form p {
-    color: red;
-    margin: 0px;
+
+.input_form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
 }
-.task_input {
-    width: 75%;
-    height: 15px; 
-    padding: 10px;
-    border: 2px solid #58215e;
-}
-#description {
-    height: 60px;
-}
+
+.task_input,
+#description,
+#comments,
+#priority,
+#status,
+#category,
 #image {
-    width: 25%;
-    background: #c0558a;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #58215e;
+    border-radius: 5px;
 }
+
 .add_btn {
-    height: 39px;
+    width: 100%;
+    height: 40px;
     background: #c0558a;
     color: white;
     border: 2px solid #58215e;
-    border-radius: 5px; 
-    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add_btn:hover {
+    background-color: #a03b6b;
+}
+
+/* Efecto en los botones */
+button {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+
+@media only screen and (max-width: 600px) {
+    .task_input,
+    #description,
+    #comments,
+    #priority,
+    #status,
+    #category,
+    #image,
+    .add_btn {
+        width: calc(100% - 20px); /* Ajusta el ancho de los elementos para pantallas más pequeñas */
+    }
 }

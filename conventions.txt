@@ -1,0 +1,26 @@
+Carpetas separadas para diferentes capas. En este caso, Views, Models y Controllers.
+
+En la carpeta Modelos, cada archivo de clase debe tener un nombre por su sección. Por ejemplo, Home.php para las cosas relacionadas con la página de inicio, Resume.php para todo lo relacionado con el currículum, y así sucesivamente.
+
+En la carpeta Controladores, debe asignar a las clases un nombre similar al de las clases de modelo, pero con el sufijo "Controlador". Por ejemplo, HomeController.php. Tenga en cuenta que nada aquí es obligatorio, solo algunas prácticas comunes.
+
+El nombre de la vista debe coincidir con el método del controlador. Por lo tanto, si está escribiendo una función llamada index para Home
+App/
+    Models/
+        Home.php
+        Site.php
+        Resume.php
+    Controllers/
+        HomeController.php
+        SiteController.php
+        ResumeController.php
+    Views/
+        Home/
+            index.php
+        Site/
+            index.php
+            about.php
+        Resume/
+            index.php
+            edit.php
+            delete.php
