@@ -4,25 +4,49 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once('app/controllers/CreateTaskController.php');
-require_once('app/controllers/DeleteTaskController.php');
 require_once('app/controllers/ReadTaskController.php');
 require_once('app/controllers/UpdateTaskController.php');
+require_once('app/controllers/DeleteTaskController.php');
 require_once('app/models/Task.php');
 require_once('app/database/DatabaseConnection.php');
-echo "Archivos incluidos correctamente.";
+require_once('app/FileUpload.php');
 
+//echo "Archivos incluidos correctamente.";
 
-// Lógica para eliminar tarea
-if (isset($_POST['delete_task'])) {
-    $deleteTaskController = new DeleteTaskController();
-    $taskId = $_POST['task_id'];
-    $deleteTaskController->deleteTask($taskId);
-    // Recargar la página o redireccionar a la misma para actualizar la lista
-    header('Location: index.php');
-    exit();
+// Agregar tarea
+if (isset($_POST['submit'])) {
+    try {
+        $fileUpload = new FileUpload();
+
+        // Verificar el tamaño del archivo
+        $maxFileSize = convertBytes(ini_get('upload_max_filesize'));
+        $uploadedFile = $_FILES['image'];
+
+        // Subir archivo y obtener la ruta
+        $taskImage = $fileUpload->uploadFile($uploadedFile, $maxFileSize);
+
+        // Resto de tu lógica para agregar la tarea
+        $createTaskController = new CreateTaskController();
+        $taskName = $_POST['name'];
+        $taskComments = $_POST['comments'] ?? '';
+        $taskCategory = $_POST['category'] ?? '';
+        $taskStatus = $_POST['status'] ?? 'pending';
+
+        $createTaskController->createTask($taskName, $taskComments, $taskCategory, $taskStatus, $taskImage);
+
+        // Recargar la página o redireccionar a la misma para actualizar la lista
+        header('Location: index.php');
+        exit();
+    } catch (Exception $e) {
+        echo 'Error al agregar la tarea: ' . $e->getMessage();
+    }
 }
 
-// Lógica para marcar tarea como completada
+// Obtener lista de tareas
+$readTaskController = new ReadTaskController();
+$tasks = $readTaskController->readTasks();
+
+// Marcar tarea como completada
 if (isset($_POST['complete_task'])) {
     $updateTaskController = new UpdateTaskController();
     $taskId = $_POST['task_id'];
@@ -32,35 +56,14 @@ if (isset($_POST['complete_task'])) {
     exit();
 }
 
-// Lógica para agregar tarea
-if (isset($_POST['submit'])) {
-    try {
-        // Verificar el tamaño del archivo
-        $maxFileSize = convertBytes(ini_get('upload_max_filesize'));
-        $uploadedFileSize = $_FILES['image']['size'];
-
-        if ($uploadedFileSize > $maxFileSize) {
-            throw new Exception('El tamaño del archivo excede el límite permitido.');
-        }
-
-        // Resto de tu lógica para agregar la tarea
-        $createTaskController = new CreateTaskController();
-        $taskName = $_POST['name'];
-        $taskComments = $_POST['comments'] ?? '';
-        $taskCategory = $_POST['category'] ?? '';
-        $taskStatus = $_POST['status'] ?? 'pending';
-        $taskImage = $_FILES['image']['tmp_name'] ?? '';
-
-        $createTaskController->createTask($taskName, $taskComments, $taskCategory, $taskStatus, $taskImage);
-            // Agregamos un mensaje de éxito para la depuración
-            echo 'Tarea agregada exitosamente.';
-
-        // Recargar la página o redireccionar a la misma para actualizar la lista
-        header('Location: index.php');
-        exit();
-    } catch (Exception $e) {
-        echo 'Error al agregar la tarea: ' . $e->getMessage();
-    }
+// Eliminar tarea
+if (isset($_POST['delete_task'])) {
+    $deleteTaskController = new DeleteTaskController();
+    $taskId = $_POST['task_id'];
+    $deleteTaskController->deleteTask($taskId);
+    // Recargar la página o redireccionar a la misma para actualizar la lista
+    header('Location: index.php');
+    exit();
 }
 
 // Función para convertir tamaños de archivo a bytes
@@ -84,10 +87,8 @@ function convertBytes($value)
     return $value;
 }
 
-// Lógica para obtener lista de tareas
-$readTaskController = new ReadTaskController();
-$tasks = $readTaskController->readTasks();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +100,11 @@ $tasks = $readTaskController->readTasks();
     <link rel="stylesheet" type="text/css" href="./public/css/style.css">
 </head>
 
-<body>
+<body  style="
+      min-height: 100vh; 
+        background-image: url('./public/images/OIP.jpeg');
+        background-size: cover;
+      ">
 
     <header>
         <h1>P8 To Do List Helena</h1>
@@ -138,7 +143,7 @@ $tasks = $readTaskController->readTasks();
         </form>
         <!-- Mostrar lista de tareas -->
         <div class="task-list">
-            <h3>Tasks List</h3>
+            <h3>Task List</h3>
             <ul>
                 <?php foreach ($tasks as $task) : ?>
                     <li>

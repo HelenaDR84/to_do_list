@@ -23,6 +23,6 @@ class ReadTaskController
         }
     }
 }
-echo "Función readTasks() llamada correctamente.";
+//echo "Función readTasks() llamada correctamente.";
 
 ?>

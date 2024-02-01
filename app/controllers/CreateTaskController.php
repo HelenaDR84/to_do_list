@@ -28,6 +28,6 @@ class CreateTaskController
         }
     }
 }
-echo "Función createTask() llamada correctamente.";
+//echo "Función createTask() llamada correctamente.";
 
 ?>

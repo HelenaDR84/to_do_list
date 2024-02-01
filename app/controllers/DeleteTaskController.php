@@ -21,5 +21,7 @@ class DeleteTaskController
         }
     }
 }
-echo "Función deleteTask() llamada correctamente.";
+
+//echo "Función deleteTask() llamada correctamente.";
+
 ?>

@@ -21,8 +21,8 @@ main {
     width: 100%;
     margin: 30px auto;
     text-align: center;
-    color: #e3e8d9;
-    background: #7952bb;
+    color: #efefef;
+    background: #e3c85a;
     border: 2px solid #58215e;
     border-radius: 20px;
     padding: 10px;
@@ -33,7 +33,7 @@ main {
     margin: 30px auto;
     border-radius: 5px;
     padding: 20px;
-    background: #7952bb;
+    background: #ddd68e;
     border: 1px solid #58215e;
 }
 
@@ -59,8 +59,8 @@ main {
 .add_btn {
     width: 100%;
     height: 40px;
-    background: #c0558a;
-    color: white;
+    background: #3d3c3d;
+    color: rgba(255, 255, 255, 0.959);
     border: 2px solid #58215e;
     border-radius: 5px;
     cursor: pointer;
@@ -68,13 +68,13 @@ main {
 }
 
 .add_btn:hover {
-    background-color: #a03b6b;
+    background-color: #b4a24c;
 }
 
 /* Efecto en los botones */
 button {
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 }
 
 button:hover {
@@ -83,7 +83,7 @@ button:hover {
 
 /* Estilo para las tareas */
 .task-list {
-    background-color: #7952bb;
+    background-color:#e3c85a;
     border: 2px solid #58215e;
     border-radius: 20px;
     padding: 20px;
@@ -102,7 +102,7 @@ ul {
 }
 
 li {
-    background-color: #b19fd3; /* Cambiado para que coincida con el color del formulario */
+    background-color: #3d3c3d; /* Cambiado para que coincida con el color del formulario */
     border: 2px solid #b4b4b5;
     margin: 10px 0;
     padding: 15px;
@@ -114,7 +114,7 @@ li {
 }
 
 li:hover {
-    background-color: #573a88;
+    background-color: #b4a24c;
 }
 
 .task-details {
@@ -145,7 +145,7 @@ li:hover {
 }
 
 .button:hover {
-    background-color: #a03b6b;
+    background-color: #b4a24c;
 }
 
 /* Estilo específico para el botón de eliminar */

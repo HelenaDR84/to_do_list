@@ -48,6 +48,6 @@ class UpdateTaskController
         }
     }
 }
-echo "Función updateTaskStatus() llamada correctamente.";
+//echo "Función updateTaskStatus() llamada correctamente.";
 
 ?>
