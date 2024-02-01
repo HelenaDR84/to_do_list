@@ -1,6 +1,92 @@
 <?php
-include("AddTask.php");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require_once('app/controllers/CreateTaskController.php');
+require_once('app/controllers/DeleteTaskController.php');
+require_once('app/controllers/ReadTaskController.php');
+require_once('app/controllers/UpdateTaskController.php');
+require_once('app/models/Task.php');
+require_once('app/database/DatabaseConnection.php');
+echo "Archivos incluidos correctamente.";
+
+
+// Lógica para eliminar tarea
+if (isset($_POST['delete_task'])) {
+    $deleteTaskController = new DeleteTaskController();
+    $taskId = $_POST['task_id'];
+    $deleteTaskController->deleteTask($taskId);
+    // Recargar la página o redireccionar a la misma para actualizar la lista
+    header('Location: index.php');
+    exit();
+}
+
+// Lógica para marcar tarea como completada
+if (isset($_POST['complete_task'])) {
+    $updateTaskController = new UpdateTaskController();
+    $taskId = $_POST['task_id'];
+    $updateTaskController->updateTaskStatus($taskId, 'completed');
+    // Recargar la página o redireccionar a la misma para actualizar la lista
+    header('Location: index.php');
+    exit();
+}
+
+// Lógica para agregar tarea
+if (isset($_POST['submit'])) {
+    try {
+        // Verificar el tamaño del archivo
+        $maxFileSize = convertBytes(ini_get('upload_max_filesize'));
+        $uploadedFileSize = $_FILES['image']['size'];
+
+        if ($uploadedFileSize > $maxFileSize) {
+            throw new Exception('El tamaño del archivo excede el límite permitido.');
+        }
+
+        // Resto de tu lógica para agregar la tarea
+        $createTaskController = new CreateTaskController();
+        $taskName = $_POST['name'];
+        $taskComments = $_POST['comments'] ?? '';
+        $taskCategory = $_POST['category'] ?? '';
+        $taskStatus = $_POST['status'] ?? 'pending';
+        $taskImage = $_FILES['image']['tmp_name'] ?? '';
+
+        $createTaskController->createTask($taskName, $taskComments, $taskCategory, $taskStatus, $taskImage);
+            // Agregamos un mensaje de éxito para la depuración
+            echo 'Tarea agregada exitosamente.';
+
+        // Recargar la página o redireccionar a la misma para actualizar la lista
+        header('Location: index.php');
+        exit();
+    } catch (Exception $e) {
+        echo 'Error al agregar la tarea: ' . $e->getMessage();
+    }
+}
+
+// Función para convertir tamaños de archivo a bytes
+function convertBytes($value)
+{
+    $unit = strtolower($value[strlen($value) - 1]);
+    $value = (int)$value;
+
+    switch ($unit) {
+        case 'k':
+            $value *= 1024;
+            break;
+        case 'm':
+            $value *= 1024 * 1024;
+            break;
+        case 'g':
+            $value *= 1024 * 1024 * 1024;
+            break;
+    }
+
+    return $value;
+}
+
+// Lógica para obtener lista de tareas
+$readTaskController = new ReadTaskController();
+$tasks = $readTaskController->readTasks();
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +108,9 @@ include("AddTask.php");
         <div class="heading">
             <h2>Femcoders To Do List</h2>
         </div>
-        <form method="post" action="index.php" class="input_form">
-            <label for="name">Task title:</label>
-            <input type="text" name="name" id="name" class="task_input" placeholder="Enter task title" required>
-
-            <label for="description">Task description:</label>
-            <textarea name="description" id="description" class="task_input" placeholder="Enter task description" required></textarea>
+        <form method="post" action="index.php" class="input_form" enctype="multipart/form-data">
+            <label for="name">Task :*</label>
+            <input type="text" name="name" id="name" class="task_input" placeholder="Enter task" required>
 
             <label for="comments">Task comments:</label>
             <input type="text" name="comments" id="comments" class="task_input" placeholder="Write a comment">
@@ -53,11 +136,45 @@ include("AddTask.php");
 
             <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
         </form>
+        <!-- Mostrar lista de tareas -->
+        <div class="task-list">
+            <h3>Tasks List</h3>
+            <ul>
+                <?php foreach ($tasks as $task) : ?>
+                    <li>
+                        <span><?= $task['task']; ?></span>
+                        <?php if (!empty($task['comments'])) : ?>
+                            <span class="comments">Comments: <?= $task['comments']; ?></span>
+                        <?php endif; ?>
+                        <?php if (!empty($task['image'])) : ?>
+                            <img src="<?= $task['image']; ?>" alt="Task Image" class="task-image">
+                        <?php endif; ?>
+                        <?php if (!empty($task['priority'])) : ?>
+                            <span class="priority">Priority: <?= ucfirst($task['priority']); ?></span>
+                        <?php endif; ?>
+                        <?php if (!empty($task['category'])) : ?>
+                            <span class="category">Category: <?= $task['category']; ?></span>
+                        <?php endif; ?>
+                        <form method="post" action="index.php" style="display: inline;">
+                            <input type="hidden" name="task_id" value="<?= $task['id_task']; ?>">
+                            <?php if (isset($task['status']) && $task['status'] === 'completed') : ?>
+                                <span class="status">Completed</span>
+                            <?php else : ?>
+                                <label for="complete_task_<?= $task['id_task']; ?>">
+                                    <input type="checkbox" id="complete_task_<?= $task['id_task']; ?>" name="complete_task" <?php if (isset($task['status']) && $task['status'] === 'completed') echo 'checked'; ?>>
+                                    Complete
+                                </label>
+                            <?php endif; ?>
+                            <button type="submit" name="delete_task">Delete</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
     </main>
     <footer>
-
     </footer>
-
 </body>
 
 </html>

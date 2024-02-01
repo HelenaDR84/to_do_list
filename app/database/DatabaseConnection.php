@@ -4,9 +4,9 @@ class DatabaseConnection
 {
     public static function connecto()
     {
-        $config = include('../config/Database.php');
+        $config = include('./app/config/Database.php');
         $dsn = "mysql:host={$config['host']};dbname={$config['dbname']}";
-
+        echo "Conexión establecida.";
         try {
             return new PDO($dsn, $config['username'], $config['password']);
         } catch (PDOException $e) {
@@ -14,3 +14,5 @@ class DatabaseConnection
         }
     }
 }
+
+?>
