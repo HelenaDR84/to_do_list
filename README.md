@@ -23,7 +23,7 @@ Interfaz mejorada:
   <img src="./public/img/final.result.png" alt="landing-page">
   
 
-## 💻 Tecnologías y herramienta utilizadas
+## 💻 Tecnologías y herramientas utilizadas
 
 [![My Skills](https://skillicons.dev/icons?i=php,html,css,js,github,vscode)](https://skillicons.dev)
 
