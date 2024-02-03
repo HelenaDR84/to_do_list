@@ -1,23 +1,12 @@
 # P8 TO DO LIST  
 
-## Femcoders To Do List
+## 📝 Femcoders To Do List
 
 Este es un proyecto inidividual, realizado como taller en el Bootcamp de Femcoders Norte de Factoria F5. <br>
 Llevamos a cabo la realización de una aplicación web de un To Do List, que permite crear, leer, actualizar y eliminar (CRUD) tareas. Se puede usar para organizar y gestionar proyectos personales o profesionales, marcando las tareas como completadas o no. La aplicación está desarrollada con PHP y MySQL, usando el patrón MVC (Modelo-Vista-Controlador).
+Interfaz mejorada con utilización de estilos CSS (Vanilla).
 <br><br>
-## 📝 Requisitos funcionales
 
-CRUD:
-- Crear tarea. Se pueden crear tareas con un título y descripción
-- Leer la lista de tareas.
-- Editar tarea: 
-- Eliminar tarea desde el botón delete.
-
-Gestión de tareas:
-- Marcar tarea como completada, flitrando a través de marcar en un check box si está completa o no.
-
-Interfaz mejorada:
-- Utilización de estilos CSS.
 
 ## Resultado Final
   <img src="./public/img/final.result.png" alt="landing-page">
