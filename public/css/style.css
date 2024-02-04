@@ -1,0 +1,197 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.heading {
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+    color: #efefef;
+    background: #e3c85a;
+    border: 2px solid #58215e;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.input_form {
+    width: 100%;
+    margin: 30px auto;
+    border-radius: 5px;
+    padding: 20px;
+    background: #ddd68e;
+    border: 1px solid #58215e;
+}
+
+.input_form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.task_input,
+#comments,
+#priority,
+#status,
+#category,
+#image {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #58215e;
+    border-radius: 5px;
+}
+
+.add_btn {
+    width: 100%;
+    height: 40px;
+    background: #3d3c3d;
+    color: rgba(255, 255, 255, 0.959);
+    border: 2px solid #58215e;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add_btn:hover {
+    background-color: #b4a24c;
+}
+
+/* Efecto en los botones */
+button {
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo para las tareas */
+.task-list {
+    background-color:#e3c85a;
+    border: 2px solid #58215e;
+    border-radius: 20px;
+    padding: 20px;
+    color: #e3e8d9;
+    margin: 10px auto;
+}
+
+.task-list h3 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #3d3c3d; /* Cambiado para que coincida con el color del formulario */
+    border: 2px solid #b4b4b5;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #b4a24c;
+}
+
+.task-details {
+    flex-grow: 1;
+}
+
+.task-details span {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.task-buttons {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para los botones de acción */
+.button {
+    padding: 10px 15px;
+    background-color: #c0558a;
+    color: white;
+    border: 2px solid #58215e;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #b4a24c;
+}
+
+/* Estilo específico para el botón de eliminar */
+.delete-button {
+    margin-left: 10px; /* Agregado para separar los botones */
+}
+
+/* Estilo para el checkbox de completado */
+.complete-checkbox {
+    display: none; /* Oculta el checkbox por defecto */
+    margin-right: 10px; /* Ajusta el margen para separar del botón de eliminar */
+}
+
+.complete-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.complete-label:before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #58215e;
+    border-radius: 3px;
+    margin-right: 8px;
+    background-color: #7952bb;
+}
+
+.complete-checkbox:checked + .complete-label:before {
+    background-color: #c0558a;
+    border-color: #a03b6b;
+}
+
+
+/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+
+@media only screen and (max-width: 600px) {
+    .task_input,
+    #comments,
+    #priority,
+    #status,
+    #category,
+    #image,
+    .add_btn {
+        width: calc(100% - 20px); /* Ajusta el ancho de los elementos para pantallas más pequeñas */
+    }
+}

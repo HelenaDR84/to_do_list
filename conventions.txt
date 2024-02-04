@@ -1,0 +1,4 @@
+Carpetas separadas para diferentes capas. En este caso,  Models, Views y Controllers. MVC 
+En la carpeta models, cada archivo de clase debe tener un nombre por su sección.
+En la carpeta controllers,  asigno a las clases un nombre similar al de las clases de modelo, pero con el sufijo "Controller".
+El nombre de la vista (carpeta views) debe coincidir con el método del controlador. 
