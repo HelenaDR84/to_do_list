@@ -21,7 +21,7 @@ class Task
         $this->task_image = $data['task_image'];
     }
 
-    //métodos getter y setter en tu clase Task para acceder y modificar los atributos de manera controlada.
+    //métodos getter y setter en la clase Task para acceder y modificar los atributos de manera controlada.
     
     // Métodos Getter
     public function getId()
