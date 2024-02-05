@@ -179,6 +179,7 @@ function convertBytes($value)
 
     </main>
     <footer>
+    <p>©2024.Todos los derechos reservados</p>
     </footer>
 </body>
 
