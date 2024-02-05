@@ -9,7 +9,7 @@ Interfaz mejorada con utilización de estilos CSS (Vanilla).
 
 
 ## Resultado Final
-  <img src="./public/img/final.result.png" alt="landing-page">
+  <img src="./public/images/ToDoListLandingPage.png" alt="landing-page">
   
 
 ## 💻 Tecnologías y herramientas utilizadas
