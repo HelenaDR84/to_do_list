@@ -100,7 +100,7 @@ function convertBytes($value)
     <link rel="stylesheet" type="text/css" href="./public/css/style.css">
 </head>
 
-<body  style="
+<body style="
       min-height: 100vh; 
         background-image: url('./public/images/OIP.jpeg');
         background-size: cover;
@@ -141,7 +141,7 @@ function convertBytes($value)
 
             <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
         </form>
-        <!-- Mostrar lista de tareas -->
+
         <div class="task-list">
             <h3>Task List</h3>
             <ul>
