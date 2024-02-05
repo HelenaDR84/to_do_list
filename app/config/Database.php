@@ -7,6 +7,6 @@ return [
     'password' => '',
 ];
 
-// El array y el return son más flexibles y se considera una práctica más moderna y escalable,que utilizando constantes. Aunque ambas formas son correctas.*/
+/* El array y el return son más flexibles y se considera una práctica más moderna y escalable, que utilizando constantes. Aunque ambas formas son correctas.*/
 
 ?>
